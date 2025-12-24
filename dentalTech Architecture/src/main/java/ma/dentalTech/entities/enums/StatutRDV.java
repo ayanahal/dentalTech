@@ -6,5 +6,6 @@ public enum StatutRDV {
     EN_ATTENTE,
     ANNULE,
     TERMINE,
-    ABSENT
+    ABSENT,
+    REPROGRAMME
 }

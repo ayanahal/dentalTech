@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.patient.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.patient.Antecedent;
 import ma.dentalTech.entities.patient.Patient;
 import ma.dentalTech.entities.enums.*;
@@ -28,7 +30,7 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
     }
 
     @Override
-    public Antecedent findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM Antecedents WHERE id = ?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -56,7 +58,7 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
     }
 
     @Override
-    public void update(Antecedent a) {
+    public CabinetMedical update(Antecedent a) {
         String sql = "UPDATE Antecedents SET nom=?, categorie=?, niveauRisque=? WHERE id=?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -66,6 +68,7 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
             ps.setLong(4, a.getId());
             ps.executeUpdate();
         } catch (SQLException e) { throw new RuntimeException(e); }
+        return null;
     }
 
     @Override

@@ -53,4 +53,9 @@ public class Patient extends BaseEntity {
                 antecedents == null ? 0 : antecedents.size()
         );
     }
+
+    @Override
+    public void setPatientId(long patientId) {
+
+    }
 }

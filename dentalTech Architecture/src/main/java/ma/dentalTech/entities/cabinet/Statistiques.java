@@ -1,6 +1,8 @@
 package ma.dentalTech.entities.cabinet;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.*;
 import ma.dentalTech.entities.base.BaseEntity;
 import ma.dentalTech.entities.enums.CategorieStatistique;
@@ -32,6 +34,26 @@ public class Statistiques extends BaseEntity {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public void setPatientId(long patientId) {
+
+    }
+
+    @Override
+    public String getLibelle() {
+        return "";
+    }
+
+    @Override
+    public LocalDateTime getDateCharge() {
+        return null;
+    }
+
+    @Override
+    public String getModePaiement() {
+        return "";
     }
 
     @Override

@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.users.Utilisateur;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.users.api.UtilisateurRepository;
@@ -28,7 +30,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository {
     }
 
     @Override
-    public Utilisateur findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM Utilisateurs WHERE id = ?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -41,7 +43,7 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepository {
     }
 
     @Override public void create(Utilisateur u) { throw new UnsupportedOperationException("Création via service"); }
-    @Override public void update(Utilisateur u) { throw new UnsupportedOperationException("Update via service"); }
+    @Override public CabinetMedical update(Utilisateur u) { throw new UnsupportedOperationException("Update via service"); }
 
     @Override
     public void delete(Utilisateur u) { if (u != null) deleteById(u.getId()); }

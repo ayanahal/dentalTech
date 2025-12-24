@@ -4,17 +4,16 @@ package ma.dentalTech.configuration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import ma.dentalTech.mvc.controllers.modules.patient.api.PatientController;
 import ma.dentalTech.repository.modules.patient.api.PatientRepository;
 import ma.dentalTech.service.modules.patient.api.PatientService;
 
 // Fabrique
-public class ApplicationContext {
+public class ApplicationContext<PatientController> {
 
     private static final Map<Class<?>, Object> context       = new HashMap<>();
     private static final Map<String, Object>   contextByName = new HashMap<>(); // Ajout d'une deuxième map
 
-    static {
+    {
         var configFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("config/beans.properties");
 
         if (configFile != null) {
@@ -38,7 +37,7 @@ public class ApplicationContext {
                 // Stockage des beans dans le contexte
                 context.put(PatientRepository.class, repository);
                 context.put(PatientService.class, service);
-                context.put(PatientController.class, controller);
+
 
                 // Enregistrement des beans aussi avec des noms explicites
                 contextByName.put("patientDao", repository);

@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Consultation;
 import ma.dentalTech.entities.dossierMedical.InterventionMedecin;
 import ma.dentalTech.entities.enums.StatutConsultation;
@@ -11,6 +13,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ConsultationRepositoryImpl implements ConsultationRepo {
 
@@ -33,7 +36,7 @@ public class ConsultationRepositoryImpl implements ConsultationRepo {
     }
 
     @Override
-    public Consultation findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT c.* FROM consultation c WHERE c.id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -78,7 +81,7 @@ public class ConsultationRepositoryImpl implements ConsultationRepo {
     }
 
     @Override
-    public void update(Consultation consultation) {
+    public CabinetMedical update(Consultation consultation) {
         String sql = "UPDATE consultation SET date_consultation = ?, statut = ?, " +
                 "observation_medecin = ?, dossier_medical_id = ?, medecin_id = ? WHERE id = ?";
 
@@ -96,6 +99,7 @@ public class ConsultationRepositoryImpl implements ConsultationRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de la consultation ID: " + consultation.getId(), e);
         }
+        return null;
     }
 
     @Override

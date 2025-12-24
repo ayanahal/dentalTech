@@ -34,6 +34,31 @@ public class Revenues extends BaseEntity {
     }
 
     @Override
+    public void setPatientId(long patientId) {
+
+    }
+
+    @Override
+    public String getLibelle() {
+        return "";
+    }
+
+    @Override
+    public LocalDateTime getDateCharge() {
+        return null;
+    }
+
+    @Override
+    public String getCategorie() {
+        return "";
+    }
+
+    @Override
+    public String getModePaiement() {
+        return "";
+    }
+
+    @Override
     public String toString() {
         return """
             Revenues {

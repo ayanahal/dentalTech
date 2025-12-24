@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.InterventionMedecin;
 import ma.dentalTech.configuration.SessionFactory;
 import ma.dentalTech.repository.common.RowMappers;
@@ -8,6 +10,7 @@ import ma.dentalTech.repository.modules.dossierMedical.api.InterventionMedecinRe
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class InterventionMedecinRepositoryImpl implements InterventionMedecinRepo {
 
@@ -30,7 +33,7 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
     }
 
     @Override
-    public InterventionMedecin findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM intervention_medecin WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -80,7 +83,7 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
     }
 
     @Override
-    public void update(InterventionMedecin intervention) {
+    public CabinetMedical update(InterventionMedecin intervention) {
         String sql = "UPDATE intervention_medecin SET prix_patient = ?, num_dent = ?, " +
                 "consultation_id = ?, acte_id = ? WHERE id = ?";
 
@@ -103,6 +106,7 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de l'intervention ID: " + intervention.getId(), e);
         }
+        return null;
     }
 
     @Override

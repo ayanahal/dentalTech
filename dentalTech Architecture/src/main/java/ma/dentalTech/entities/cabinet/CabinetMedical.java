@@ -1,5 +1,6 @@
 package ma.dentalTech.entities.cabinet;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
@@ -43,6 +44,31 @@ public class CabinetMedical extends BaseEntity {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public void setPatientId(long patientId) {
+
+    }
+
+    @Override
+    public String getLibelle() {
+        return "";
+    }
+
+    @Override
+    public LocalDateTime getDateCharge() {
+        return null;
+    }
+
+    @Override
+    public String getCategorie() {
+        return "";
+    }
+
+    @Override
+    public String getModePaiement() {
+        return "";
     }
 
     @Override

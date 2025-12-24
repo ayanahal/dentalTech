@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.enums.*;
 import ma.dentalTech.entities.users.Notification;
 import ma.dentalTech.repository.common.RowMappers;
@@ -10,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class NotificationRepositoryImpl implements NotificationRepository {
 
@@ -29,7 +32,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     }
 
     @Override
-    public Notification findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM Notifications WHERE id=?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -42,7 +45,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     }
 
     @Override public void create(Notification n) { throw new UnsupportedOperationException(); }
-    @Override public void update(Notification n) { throw new UnsupportedOperationException(); }
+    @Override public CabinetMedical update(Notification n) { throw new UnsupportedOperationException(); }
 
     @Override public void delete(Notification n) { if (n != null) deleteById(n.getId()); }
 

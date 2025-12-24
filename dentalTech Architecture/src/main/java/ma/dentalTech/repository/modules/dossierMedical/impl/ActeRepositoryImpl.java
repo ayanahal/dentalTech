@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Acte;
 import ma.dentalTech.entities.dossierMedical.InterventionMedecin;
 import ma.dentalTech.configuration.SessionFactory;
@@ -9,6 +11,7 @@ import ma.dentalTech.repository.modules.dossierMedical.api.ActeRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ActeRepositoryImpl implements ActeRepository {
 
@@ -31,7 +34,7 @@ public class ActeRepositoryImpl implements ActeRepository {
     }
 
     @Override
-    public Acte findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM acte WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -73,7 +76,7 @@ public class ActeRepositoryImpl implements ActeRepository {
     }
 
     @Override
-    public void update(Acte acte) {
+    public CabinetMedical update(Acte acte) {
         String sql = "UPDATE acte SET libelle = ?, categorie = ?, prix_base = ? WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -88,6 +91,7 @@ public class ActeRepositoryImpl implements ActeRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de l'acte ID: " + acte.getId(), e);
         }
+        return null;
     }
 
     @Override

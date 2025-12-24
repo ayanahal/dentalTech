@@ -1,6 +1,7 @@
 package ma.dentalTech.repository.modules.cabinet.api;
 
 
+import ma.dentalTech.entities.agenda.RDV;
 import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.users.Staff;
 import ma.dentalTech.repository.common.CrudRepository;
@@ -32,4 +33,6 @@ public interface CabinetMedicalRepository extends CrudRepository<CabinetMedical,
     List<Staff> getStaffOfCabinet(Long cabinetId);
 
     List<CabinetMedical> getCabinetsOfStaff(Long staffId);
+
+    CabinetMedical save(RDV toUpdate);
 }

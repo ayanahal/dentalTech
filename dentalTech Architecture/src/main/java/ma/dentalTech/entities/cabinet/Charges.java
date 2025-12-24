@@ -34,6 +34,46 @@ public class Charges  extends BaseEntity {
     }
 
     @Override
+    public void setPatientId(long patientId) {
+
+    }
+
+    @Override
+    public String getLibelle() {
+        return "";
+    }
+
+    @Override
+    public LocalDateTime getDateCharge() {
+        return null;
+    }
+
+    @Override
+    public String getCategorie() {
+        return "";
+    }
+
+    @Override
+    public String getModePaiement() {
+        return "";
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime now) {
+
+    }
+
+    @Override
+    public void setUpdatedAt(LocalDateTime now) {
+
+    }
+
+    @Override
+    public void setPrenom(String test) {
+
+    }
+
+    @Override
     public String toString() {
         return """
             Charges {

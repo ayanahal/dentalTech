@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.users.Staff;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.users.api.StaffRepository;
@@ -9,6 +11,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StaffRepositoryImpl implements StaffRepository {
 
@@ -33,7 +36,7 @@ public class StaffRepositoryImpl implements StaffRepository {
     }
 
     @Override
-    public Staff findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = """
             SELECT u.*, s.*
             FROM Utilisateurs u
@@ -52,7 +55,7 @@ public class StaffRepositoryImpl implements StaffRepository {
     }
 
     @Override public void create(Staff staff) { throw new UnsupportedOperationException("Création via UtilisateurRepository"); }
-    @Override public void update(Staff staff) { throw new UnsupportedOperationException("Update via UtilisateurRepository"); }
+    @Override public CabinetMedical update(Staff staff) { throw new UnsupportedOperationException("Update via UtilisateurRepository"); }
     @Override public void delete(Staff staff) { if (staff != null) deleteById(staff.getId()); }
 
     @Override

@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.enums.RoleType;
 import ma.dentalTech.entities.users.Role;
 import ma.dentalTech.repository.common.RowMappers;
@@ -27,7 +29,7 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override
-    public Role findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM Roles WHERE id=?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -40,7 +42,7 @@ public class RoleRepositoryImpl implements RoleRepository {
     }
 
     @Override public void create(Role r) { throw new UnsupportedOperationException(); }
-    @Override public void update(Role r) { throw new UnsupportedOperationException(); }
+    @Override public CabinetMedical update(Role r) { throw new UnsupportedOperationException(); }
     @Override public void delete(Role r) { if (r != null) deleteById(r.getId()); }
 
     @Override

@@ -1,10 +1,11 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.DossierMedical;
 import ma.dentalTech.entities.dossierMedical.Consultation;
 import ma.dentalTech.entities.dossierMedical.Ordonnance;
 import ma.dentalTech.entities.dossierMedical.Certificat;
-import ma.dentalTech.entities.patient.Patient;
 import ma.dentalTech.configuration.SessionFactory;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.dossierMedical.api.DossierMedicalRepo;
@@ -39,7 +40,7 @@ public class DossierMedicalRepositoryImpl implements DossierMedicalRepo {
     }
 
     @Override
-    public DossierMedical findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT d.*, p.* FROM dossier_medical d " +
                 "JOIN patient p ON d.patient_id = p.id " +
                 "WHERE d.id = ?";
@@ -84,7 +85,7 @@ public class DossierMedicalRepositoryImpl implements DossierMedicalRepo {
     }
 
     @Override
-    public void update(DossierMedical dossier) {
+    public CabinetMedical update(DossierMedical dossier) {
         String sql = "UPDATE dossier_medical SET patient_id = ?, date_creation = ? WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -98,6 +99,7 @@ public class DossierMedicalRepositoryImpl implements DossierMedicalRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour du dossier médical ID: " + dossier.getId(), e);
         }
+        return null;
     }
 
     @Override

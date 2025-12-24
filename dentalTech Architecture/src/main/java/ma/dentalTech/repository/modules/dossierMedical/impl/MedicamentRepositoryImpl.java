@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Medicament;
 import ma.dentalTech.entities.enums.FormeMedicament;
 import ma.dentalTech.configuration.SessionFactory;
@@ -9,6 +11,7 @@ import ma.dentalTech.repository.modules.dossierMedical.api.MedicamentRepo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MedicamentRepositoryImpl implements MedicamentRepo {
 
@@ -31,7 +34,7 @@ public class MedicamentRepositoryImpl implements MedicamentRepo {
     }
 
     @Override
-    public Medicament findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM medicament WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -78,7 +81,7 @@ public class MedicamentRepositoryImpl implements MedicamentRepo {
     }
 
     @Override
-    public void update(Medicament medicament) {
+    public CabinetMedical update(Medicament medicament) {
         String sql = "UPDATE medicament SET nom = ?, laboratoire = ?, type = ?, forme = ?, " +
                 "remboursable = ?, prix_unitaire = ?, description = ? WHERE id = ?";
 
@@ -98,6 +101,7 @@ public class MedicamentRepositoryImpl implements MedicamentRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour du médicament ID: " + medicament.getId(), e);
         }
+        return null;
     }
 
     @Override

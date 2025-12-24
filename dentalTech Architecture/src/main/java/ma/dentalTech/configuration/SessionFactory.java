@@ -107,7 +107,7 @@ public final class SessionFactory {
      * @return une instance valide de {@link Connection}.
      * @throws SQLException en cas d'erreur de création.
      */
-    public synchronized Connection getConnection() throws SQLException {
+    public static synchronized Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed() || !isValid(connection)) {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println(" Nouvelle connexion JDBC établie avec succès !");

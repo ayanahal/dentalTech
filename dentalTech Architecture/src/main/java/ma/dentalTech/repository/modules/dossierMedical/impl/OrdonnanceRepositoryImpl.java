@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Ordonnance;
 import ma.dentalTech.entities.dossierMedical.Prescription;
 import ma.dentalTech.configuration.SessionFactory;
@@ -10,6 +12,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OrdonnanceRepositoryImpl implements OrdonnanceRepo {
 
@@ -32,7 +35,7 @@ public class OrdonnanceRepositoryImpl implements OrdonnanceRepo {
     }
 
     @Override
-    public Ordonnance findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM ordonnance WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -74,7 +77,7 @@ public class OrdonnanceRepositoryImpl implements OrdonnanceRepo {
     }
 
     @Override
-    public void update(Ordonnance ordonnance) {
+    public CabinetMedical update(Ordonnance ordonnance) {
         String sql = "UPDATE ordonnance SET date = ?, dossier_medical_id = ?, medecin_id = ? WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -89,6 +92,7 @@ public class OrdonnanceRepositoryImpl implements OrdonnanceRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de l'ordonnance ID: " + ordonnance.getId(), e);
         }
+        return null;
     }
 
     @Override

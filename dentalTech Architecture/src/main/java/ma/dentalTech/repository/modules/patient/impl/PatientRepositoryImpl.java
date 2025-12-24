@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.patient.impl;
 
 import lombok.Data;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.enums.Assurance;
 import ma.dentalTech.entities.enums.Sexe;
 import ma.dentalTech.entities.patient.Antecedent;
@@ -38,7 +40,7 @@ public class PatientRepositoryImpl implements PatientRepository {
     }
 
     @Override
-    public Patient findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM Patients WHERE id = ?";
         try (Connection c = SessionFactory.getInstance().getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
@@ -103,7 +105,7 @@ public class PatientRepositoryImpl implements PatientRepository {
 
 
     @Override
-    public void update(Patient p) {
+    public CabinetMedical update(Patient p) {
         String sql = """
             UPDATE Patients SET nom=?, prenom=?, adresse=?, telephone=?, email=?, 
                    dateNaissance=?, dateCreation=? , dateDerniereModification = ?,sexe=?, assurance=? WHERE id=?
@@ -139,6 +141,7 @@ public class PatientRepositoryImpl implements PatientRepository {
             ps.setLong(11, p.getId());
             ps.executeUpdate();
         } catch (SQLException e) { throw new RuntimeException(e); }
+        return null;
     }
 
     @Override
@@ -326,6 +329,11 @@ public class PatientRepositoryImpl implements PatientRepository {
         }
 
         return result;
+    }
+
+    @Override
+    public CabinetMedical save(CabinetMedical cabinet) {
+        return null;
     }
 
     /**

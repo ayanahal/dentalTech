@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.users.Medecin;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.users.api.MedecinRepository;
@@ -8,6 +10,7 @@ import ma.dentalTech.repository.modules.users.api.MedecinRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MedecinRepositoryImpl implements MedecinRepository {
 
@@ -33,7 +36,7 @@ public class MedecinRepositoryImpl implements MedecinRepository {
     }
 
     @Override
-    public Medecin findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = """
             SELECT u.*, s.*, m.*
             FROM Utilisateurs u
@@ -53,7 +56,7 @@ public class MedecinRepositoryImpl implements MedecinRepository {
     }
 
     @Override public void create(Medecin m) { throw new UnsupportedOperationException(); }
-    @Override public void update(Medecin m) { throw new UnsupportedOperationException(); }
+    @Override public CabinetMedical update(Medecin m) { throw new UnsupportedOperationException(); }
     @Override public void delete(Medecin m) { if (m != null) deleteById(m.getId()); }
 
     @Override

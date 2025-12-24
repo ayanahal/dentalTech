@@ -1,6 +1,8 @@
 package ma.dentalTech.repository.modules.users.impl;
 
 import ma.dentalTech.configuration.SessionFactory;
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.users.Secretaire;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.users.api.SecretaireRepository;
@@ -34,7 +36,7 @@ public class SecretaireRepositoryImpl implements SecretaireRepository {
     }
 
     @Override
-    public Secretaire findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = """
             SELECT u.*, s.*, sec.*
             FROM Utilisateurs u
@@ -54,7 +56,7 @@ public class SecretaireRepositoryImpl implements SecretaireRepository {
     }
 
     @Override public void create(Secretaire s) { throw new UnsupportedOperationException(); }
-    @Override public void update(Secretaire s) { throw new UnsupportedOperationException(); }
+    @Override public CabinetMedical update(Secretaire s) { throw new UnsupportedOperationException(); }
     @Override public void delete(Secretaire s) { if (s != null) deleteById(s.getId()); }
 
     @Override

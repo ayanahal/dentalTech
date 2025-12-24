@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Prescription;
 import ma.dentalTech.configuration.SessionFactory;
 import ma.dentalTech.repository.common.RowMappers;
@@ -8,6 +10,7 @@ import ma.dentalTech.repository.modules.dossierMedical.api.PrescriptionRepo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PrescriptionRepositoryImpl implements PrescriptionRepo {
 
@@ -30,7 +33,7 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepo {
     }
 
     @Override
-    public Prescription findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM prescription WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -75,7 +78,7 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepo {
     }
 
     @Override
-    public void update(Prescription prescription) {
+    public CabinetMedical update(Prescription prescription) {
         String sql = "UPDATE prescription SET quantite = ?, frequence = ?, duree_en_jours = ?, " +
                 "ordonnance_id = ?, medicament_id = ? WHERE id = ?";
 
@@ -93,6 +96,7 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de la prescription ID: " + prescription.getId(), e);
         }
+        return null;
     }
 
     @Override

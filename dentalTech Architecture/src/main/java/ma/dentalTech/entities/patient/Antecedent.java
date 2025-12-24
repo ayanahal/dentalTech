@@ -39,5 +39,10 @@ public class Antecedent extends BaseEntity {
                 patients == null ? 0 : patients.size()
         );
     }
+
+    @Override
+    public void setPatientId(long patientId) {
+
+    }
 }
 

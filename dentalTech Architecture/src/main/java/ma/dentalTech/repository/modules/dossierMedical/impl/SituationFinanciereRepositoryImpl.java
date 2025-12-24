@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.SituationFinanciere;
 import ma.dentalTech.entities.enums.StatutSituationFinanciere;
 import ma.dentalTech.configuration.SessionFactory;
@@ -32,7 +34,7 @@ public class SituationFinanciereRepositoryImpl implements SituationFinanciereRep
     }
 
     @Override
-    public SituationFinanciere findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM situation_financiere WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -78,7 +80,7 @@ public class SituationFinanciereRepositoryImpl implements SituationFinanciereRep
     }
 
     @Override
-    public void update(SituationFinanciere situation) {
+    public CabinetMedical update(SituationFinanciere situation) {
         String sql = "UPDATE situation_financiere SET totale_des_actes = ?, totale_paye = ?, credit = ?, " +
                 "statut = ?, en_promo = ?, dossier_medical_id = ? WHERE id = ?";
 
@@ -97,6 +99,7 @@ public class SituationFinanciereRepositoryImpl implements SituationFinanciereRep
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour de la situation financière ID: " + situation.getId(), e);
         }
+        return null;
     }
 
     @Override

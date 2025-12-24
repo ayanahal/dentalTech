@@ -1,5 +1,7 @@
 package ma.dentalTech.repository.modules.dossierMedical.impl;
 
+import ma.dentalTech.entities.agenda.AgendaMensuel;
+import ma.dentalTech.entities.cabinet.CabinetMedical;
 import ma.dentalTech.entities.dossierMedical.Certificat;
 import ma.dentalTech.configuration.SessionFactory;
 import ma.dentalTech.repository.common.RowMappers;
@@ -9,6 +11,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CertificatRepositoryImpl implements CertificatRepo {
 
@@ -31,7 +34,7 @@ public class CertificatRepositoryImpl implements CertificatRepo {
     }
 
     @Override
-    public Certificat findById(Long id) {
+    public Optional<AgendaMensuel> findById(Long id) {
         String sql = "SELECT * FROM certificat WHERE id = ?";
 
         try (Connection c = SessionFactory.getInstance().getConnection();
@@ -77,7 +80,7 @@ public class CertificatRepositoryImpl implements CertificatRepo {
     }
 
     @Override
-    public void update(Certificat certificat) {
+    public CabinetMedical update(Certificat certificat) {
         String sql = "UPDATE certificat SET date_debut = ?, date_fin = ?, duree = ?, " +
                 "note_medecin = ?, dossier_medical_id = ?, medecin_id = ? WHERE id = ?";
 
@@ -96,6 +99,7 @@ public class CertificatRepositoryImpl implements CertificatRepo {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur lors de la mise à jour du certificat ID: " + certificat.getId(), e);
         }
+        return null;
     }
 
     @Override

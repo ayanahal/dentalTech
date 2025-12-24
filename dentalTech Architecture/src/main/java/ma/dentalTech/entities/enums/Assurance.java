@@ -2,5 +2,6 @@ package ma.dentalTech.entities.enums;
 
 public enum Assurance {
 
-    CNOPS, CNSS, Autre, Aucune
+    CNOPS, CNSS, Autre, Aucune;
+    public static Assurance PRIVE;
 }

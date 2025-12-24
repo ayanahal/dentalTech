@@ -55,4 +55,7 @@ public class AgendaMensuel {
                 joursNonDisponibles == null ? 0 : joursNonDisponibles.size(),
                 rendezVous == null ? 0 : rendezVous.size());
     }
+
+    public void setNom(String nom) {
+    }
 }
